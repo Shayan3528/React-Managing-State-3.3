@@ -1,11 +1,16 @@
 import {useState}  from 'react';
 
 export default function Form(){
-  const [x,setX] = useState(0);
-  const [y,setY] = useState(0);
+  const [position,setPosition] = useState(0);
+
   function handlePointerMove(e){
-      setX(e.clientX);
-      setY(e.clientY);
+      // setX(e.clientX);
+      // setY(e.clientY);
+      // console.dir(e);
+      setPosition({      /// not Mutated , It is new object 
+        x: e.clientX,
+        y: e.clientY,
+      });
   }
 
   return(
@@ -28,7 +33,7 @@ export default function Form(){
         top:-10,
         width:20,
         height:20,
-        transform:`translate(${x}px, ${y}px)`
+        transform:`translate(${position.x}px, ${position.y}px)`
        }}
       />
 
