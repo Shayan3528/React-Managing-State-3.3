@@ -1,50 +1,37 @@
-import { useState } from "react";
+import {useState}  from 'react';
 
-export default function Form() {
-  const [firstName, setFirstName] = useState("Jane");
-  const [lastName, setLastName] = useState("Jacobs");
-  const [isEditing, setIsEditing] = useState(false);
+export default function Form(){
+  const [x,setX] = useState(0);
+  const [y,setY] = useState(0);
+  function handlePointerMove(e){
+      setX(e.clientX);
+      setY(e.clientY);
+  }
 
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setIsEditing(!isEditing);
-      }}
+  return(
+    <div 
+    style = {{
+      position:"relative",
+      width:"100vw",
+      height:"100vh",
+    }}
+     onPointerMove = {
+      handlePointerMove
+     }
     >
-      <label>
-        First name:{" "}
-        {isEditing ? (
-          <input
-            value={firstName}
-            onChange={(e) => {
-              setFirstName(e.target.value);
-            }}
-          />
-        ) : (
-          <b>{firstName}</b>
-        )}
-      </label>
-      <br/>
-      <label>
-        Last name:{" "}
-        {isEditing ? (
-          <input
-            value={lastName}
-            onChange={(e) => {
-              setLastName(e.target.value);
-            }}
-          />
-        ) : (
-          <b>{lastName}</b>
-        )}
-      
-      </label>
-      <br/>
-      <button type="submit">{isEditing ? "Save": "Edit"}</button>
-      <p>
-        <i>Hello, {firstName } {lastName}!</i>
-      </p>
-    </form>
+      <div
+       style = {{
+        position:'absolute',
+        backgroundColor:"red",
+        borderRadius:'50%',
+        left:-10,
+        top:-10,
+        width:20,
+        height:20,
+        transform:`translate(${x}px, ${y}px)`
+       }}
+      />
+
+    </div>
   );
 }
