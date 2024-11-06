@@ -1,42 +1,34 @@
-import {useState}  from 'react';
+import { useState } from "react";
 
-export default function Form(){
-  const [position,setPosition] = useState(0);
+export default function Form() {
+  const [inputs, setInputs] = useState([
+    {
+      id: 1,
+      label: "Name",
+    },
+  ]);
 
-  function handlePointerMove(e){
-      // setX(e.clientX);
-      // setY(e.clientY);
-      // console.dir(e);
-      setPosition({      /// not Mutated , It is new object 
-        x: e.clientX,
-        y: e.clientY,
-      });
-  }
+  const handleAddInput = () => {
+    const nextId = inputs[inputs.length - 1].id + 1;
+    setInputs([
+      ...inputs,
+      {
+        id: nextId,
+        label: "input",
+      },
+    ]);
+  };
 
-  return(
-    <div 
-    style = {{
-      position:"relative",
-      width:"100vw",
-      height:"100vh",
-    }}
-     onPointerMove = {
-      handlePointerMove
-     }
-    >
-      <div
-       style = {{
-        position:'absolute',
-        backgroundColor:"red",
-        borderRadius:'50%',
-        left:-10,
-        top:-10,
-        width:20,
-        height:20,
-        transform:`translate(${position.x}px, ${position.y}px)`
-       }}
-      />
-
+  return (
+    <div>
+      {inputs.map((input) => (
+        <div key={input.id} style={{ marginBottom: "10px" }}>
+          <input type="type" label={input.label} />
+        </div>
+      ))}
+      <div style={{ marginTop: "5px" }}>
+        <button onClick={handleAddInput}>Add Button</button>
+      </div>
     </div>
   );
 }
