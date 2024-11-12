@@ -6,14 +6,14 @@ export default function TravelPlan(){
     
    
     const [plan,setPlane] = useState(initialTravelPlan);
+    const root  = plan[0];
+    const planetIds = root.childIds;
     
-    
-    const planets = plan.childPlaces;
     return(
         <>
             <h2>Place to Visit</h2>
             <ol>
-                {planets.map(place => <PlaceTree key = {place.id} place = {place}/>)}
+                {planetIds.map(placeId => <PlaceTree key = {placeId} id = {placeId} placesById = {plan}/>)}
 
             </ol>
 
