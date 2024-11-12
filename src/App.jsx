@@ -1,10 +1,11 @@
 import "./App.css";
-import Form from "./Component/Form";
+
+import TravelPlan from "./Component/TravelPlan";
 
 export default function App() {
   return (
     <div>
-      <Form />
+      <TravelPlan />
     </div>
   );
 }
