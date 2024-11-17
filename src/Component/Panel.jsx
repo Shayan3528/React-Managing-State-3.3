@@ -1,11 +1,22 @@
+import { useState } from "react";
+export default function Panel() {
+  const [score, setScore] = useState(0);
+  const [hover, setHover] = useState(false);
 
-
-export default function Panel({ title,children,isActive ,onActive}) {
-  
+  let className = "counter";
+  if (hover) {
+    className += "hover";
+  }
   return (
-    <section className="panel">
-      <h3>{title}</h3>
-      {isActive ? <p> {children} </p> : <button onClick ={onActive}>Show</button>}
-    </section>
+    <div
+      className={className}
+      onPointerEnter={() => setHover(true)}
+      onPointerLeave={() => setHover(false)}
+    >
+      <div className = " resultDiv">
+        <h1>{score}</h1>
+        <button onClick={() => setScore(score + 1)}> Add One</button>
+      </div>
+    </div>
   );
 }
